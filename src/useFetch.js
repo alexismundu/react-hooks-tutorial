@@ -14,11 +14,13 @@ export const useFetch = url => {
   useEffect(() => {
     setState(state => ({ data: state.data, loading: true }));
     fetch(url)
-      .then(x => x.text())
-      .then(y => {
-        if (isCurrent.current) {
-          setState({ data: y, loading: false });
-        }
+      .then(res => res.text())
+      .then(data => {
+        setTimeout(() =>{
+          if (isCurrent.current) {
+            setState({ data, loading: false });
+          }
+        },2000)
       });
   }, [url, setState]);
 

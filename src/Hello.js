@@ -1,27 +1,33 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
-import { useFetch } from "./useFetch";
-import { useMeasure } from "./useMeasure";
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+
+import { useFetch } from './useFetch';
 
 export const Hello = () => {
-  // const renders = useRef(0);
   const [count, setCount] = useState(() =>
-    JSON.parse(localStorage.getItem("count"))
+    JSON.parse(localStorage.getItem('count'))
   );
   const { data, loading } = useFetch(`http://numbersapi.com/${count}/trivia`);
+
   useEffect(() => {
-    localStorage.setItem("count", JSON.stringify(count));
+    localStorage.setItem('count', JSON.stringify(count));
   }, [count]);
 
-  const [rect, divRef] = useMeasure([data]);
+  const [rect, setRect] = useState({});
+  const divRef = useRef();
+
+  useLayoutEffect(() => {
+    setRect(divRef.current.getBoundingClientRect());
+    // We could do something after the data changed
+  }, [data]);
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <div ref={divRef}>{!data ? "loading..." : data}</div>
+      <div style={{ display: 'flex' }}>
+        <div ref={divRef}>{loading ? 'loading...' : data}</div>
       </div>
       <pre>{JSON.stringify(rect, null, 2)}</pre>
       <div>count: {count}</div>
-      <button onClick={() => setCount(c => c + 1)}>increment</button>
+      <button onClick={() => setCount((c) => c + 1)}>increment</button>
     </div>
   );
 };
