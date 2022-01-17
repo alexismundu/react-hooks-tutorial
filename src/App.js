@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { useForm } from "./useForm";
+import { Random } from "./Random";
 
 const App = () => {
-  const [values, handleChange] = useForm({ email: "", password: "" });
-  const [values2, handleChange2] = useForm({ firstName: "", lastName: "" });
+  const [showHello, setShowHello] = useState(true);
 
   return (
     <div>
       <>
-        <input name="email" value={values.email} onChange={handleChange} />
-        <input
-          type="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-        />
+        <button onClick={() => setShowHello(!showHello)}>toggle</button>
+        {showHello && <Random />}
       </>
     </div>
   );
