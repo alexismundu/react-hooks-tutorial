@@ -1,3 +1,3 @@
-# Beginner React Hook Tutorial
+# React hooks challenge
 
-Code for YouTube series: https://www.youtube.com/playlist?list=PLN3n1USn4xlmyw3ebYuZmGp60mcENitdM
+Complete every TODO that is listed in the Random component, good luck :four_leaf_clover:	
