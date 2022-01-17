@@ -2,11 +2,13 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 import { useFetch } from './useFetch';
 
-export const Hello = () => {
+export const Random = () => {
   const [count, setCount] = useState(() =>
     JSON.parse(localStorage.getItem('count'))
   );
-  const { data, loading } = useFetch(`http://numbersapi.com/${count}/trivia`);
+  const { data, loading, error } = useFetch(
+    `http://numbersapi.com/${count}/trivia`
+  );
 
   useEffect(() => {
     localStorage.setItem('count', JSON.stringify(count));
@@ -17,13 +19,17 @@ export const Hello = () => {
 
   useLayoutEffect(() => {
     setRect(divRef.current.getBoundingClientRect());
-    // We could do something after the data changed
+    // We could do something after the div changed dimensions because of the new data
   }, [data]);
 
   return (
     <div>
       <div style={{ display: 'flex' }}>
-        <div ref={divRef}>{loading ? 'loading...' : data}</div>
+        {error ? (
+          <div>Oops something happened :'(</div>
+        ) : (
+          <div ref={divRef}>{loading ? 'loading...' : data}</div>
+        )}
       </div>
       <pre>{JSON.stringify(rect, null, 2)}</pre>
       <div>count: {count}</div>
