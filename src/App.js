@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Hello } from "./Hello";
+import { Random } from "./Random";
 
 const App = () => {
   const [showHello, setShowHello] = useState(true);
@@ -8,7 +8,7 @@ const App = () => {
     <div>
       <>
         <button onClick={() => setShowHello(!showHello)}>toggle</button>
-        {showHello && <Hello />}
+        {showHello && <Random />}
       </>
     </div>
   );
