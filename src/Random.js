@@ -4,7 +4,7 @@ import { useFetch } from './useFetch';
 
 export const Random = () => {
   const [count, setCount] = useState(() =>
-    JSON.parse(localStorage.getItem('count'))
+    JSON.parse(localStorage.getItem('count')) || 0
   );
   const { data, loading, error } = useFetch(
     `http://numbersapi.com/${count}/trivia`
