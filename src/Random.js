@@ -13,7 +13,7 @@ export const Random = () => {
   Click the increment button and immediately right after click the toggle button,
   notice that after the 2 second delay there will be an error in the console.
   
-  HINT: useRef
+  HINT: Cancel the fetching with an abort controller, extra: you can try with useRef also
   */
   // TODO(6): Refactor the fetching logic to handle state with useReducer.
   useEffect(() => {
